@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <h2>Sign-in Form</h2>
+  <form
+    [formGroup]="signupForm"
+    autocomplete="off"
+    novalidate
+    (ngSubmit)="onFormSubmit(signupForm.value)"
+  >
+    <div class="col-md-10">
+      <div class="form-group">
+        <label for="inputEmail">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="inputEmail"
+          placeholder="Email"
+          formControlName="email"
+          required
+        />
+        <div class="col-md-5">
+          <em *ngIf="validateControl('email') && hasError('email', 'required')"><span style="color: brown;">**Email is required</span></em>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="inputPassword">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="inputPassword"
+          placeholder="Password"
+          formControlName="password"
+          required
+        />
+        <div class="col-md-5">
+          <em *ngIf="validateControl('email') && hasError('email', 'required')"><span style="color: brown;">**Email is required</span></em>
+        </div>
+      </div>
+
+      <br />
+
+      <button
+        type="submit"
+        class="btn btn-primary signIn"
+        [disabled]="!signupForm.valid"
+      >
+        Sign in
+      </button>
+    </div>
+  </form>
+</div>

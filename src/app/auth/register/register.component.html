@@ -1,0 +1,125 @@
+<div>
+  <h2>Register Form</h2>
+  <form
+    [formGroup]="registerdForm"
+    autocomplete="off"
+    novalidate
+    (ngSubmit)="onFormSubmit(registerdForm.value)"
+  >
+    <div class="col-md-10">
+      <div class="form-group">
+        <label for="inputEmail">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="inputEmail"
+          placeholder="Email"
+          formControlName="email"
+          [pattern]="emailRegex"
+          required
+        />
+        <div class="col-md-5">
+          <em *ngIf="validateControl('email')"
+            ><span style="color: brown;">**Email is not valid</span></em
+          ><br>
+          <em *ngIf="validateControl('email') && hasError('email', 'required')"
+            ><span style="color: brown;">**Email is required </span></em
+          >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPassword">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="inputPassword"
+          placeholder="Password"
+          formControlName="password"
+          required
+        />
+        <div class="col-md-5">
+          <em *ngIf="validateControl('password') && hasError('password', 'required')"
+            ><span style="color: brown;">**Password is required</span></em
+          >
+          <em
+            *ngIf="
+              validateControl('password') && hasError('password', 'minlength')
+            "
+            ><span style="color: brown;"
+              >**Minimum allowed length is 4 characters.</span
+            ></em
+          >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputconformPassword">Conform Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="inputconformPassword"
+          placeholder="Conform Password"
+          formControlName="conformPassword"
+          required
+        />
+        <div class="col-md-5">
+          <em *ngIf="validateControl('conformPassword')"
+            ><span style="color: brown;"
+              >**Conform Password is not match</span
+            ></em
+          >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputUsername">User Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputUsername"
+          placeholder="User Name"
+          formControlName="userName"
+          required
+        />
+        <div class="col-md-5">
+          <em
+            *ngIf="
+              validateControl('userName') && hasError('userName', 'required')
+            "
+            ><span style="color: brown;">**User Name is required</span></em
+          >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputContact">Contact Number</label>
+        <input
+          type="tel"
+          class="form-control"
+          id="inputContact"
+          placeholder="Contact Number"
+          formControlName="contactNum"
+          required
+        />
+        <div class="col-md-5">
+          <em
+            *ngIf="
+              validateControl('contactNum') &&
+              hasError('contactNum', 'required')
+            "
+            ><span style="color: brown;">**contact Number is required</span></em
+          >
+        </div>
+      </div>
+      <br />
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!registerdForm.valid"
+        style="float: right;"
+      >
+        Submit
+      </button>
+    </div>
+    <div style="text-align: center;">
+      {{successMessage}}
+    </div>
+  </form>
+</div>
